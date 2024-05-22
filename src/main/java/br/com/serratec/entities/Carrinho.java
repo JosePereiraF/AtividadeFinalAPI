@@ -7,12 +7,12 @@ import jakarta.persistence.Entity;
 public class Carrinho {
 	
 	@EmbeddedId
-	private ProdutoPedido id = new ProdutoPedido();
+	private ProdutoPedidoId id = new ProdutoPedidoId();
 	private Integer quantidade;
 	
 	private Carrinho () {}
 
-	public ProdutoPedido getId() {
+	public ProdutoPedidoId getId() {
 		return id;
 	}
 
@@ -20,7 +20,7 @@ public class Carrinho {
 		return quantidade;
 	}
 
-	public void setId(ProdutoPedido id) {
+	public void setId(ProdutoPedidoId id) {
 		this.id = id;
 	}
 
