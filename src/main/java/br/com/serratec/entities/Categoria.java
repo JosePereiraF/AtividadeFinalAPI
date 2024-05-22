@@ -12,7 +12,7 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Categoria {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -21,7 +21,16 @@ public class Categoria {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "categoria")
 	private List<Produto> produtos;
-	public Categoria () {}
+
+	public Categoria() {
+	}
+
+	public Categoria(Long id, String nome, String descricao) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+	}
 
 	public Long getId() {
 		return id;
@@ -46,7 +55,5 @@ public class Categoria {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
-	
 
 }
