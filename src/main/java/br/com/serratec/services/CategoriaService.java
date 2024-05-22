@@ -57,5 +57,21 @@ public class CategoriaService {
 		}
 		
 	}
+	
+	public ResponseEntity<CategoriaResponseDTO> listarCategoriaPorId (Long id)
+	{
+		Categoria cat; 
+		
+		if(repository.existsById(id)) 
+		{
+			cat = repository.findById(id).get();
+			return  ResponseEntity.ok(new CategoriaResponseDTO(cat));
+		}
+		
+		else 
+		{
+			return ResponseEntity.notFound().build();
+		}
+	}
 
 }

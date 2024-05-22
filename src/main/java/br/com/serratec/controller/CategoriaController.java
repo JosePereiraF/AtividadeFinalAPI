@@ -28,7 +28,14 @@ public class CategoriaController {
 	public List<CategoriaResponseDTO> listarCategorias() {
 		return service.listarCategorias();
 	}
-
+	
+	@GetMapping("/listarCategoriaPorId/{id}")
+	public ResponseEntity<CategoriaResponseDTO> listarCategoriaPorId(@PathVariable Long id)
+	{
+		return service.listarCategoriaPorId(id);
+		
+	}
+	
 	@PostMapping("/adicionarCategoria")
 	public ResponseEntity<CategoriaResponseDTO> adicionarCategoria(@RequestBody CategoriaRequestDTO novaCategoria) {
 		CategoriaResponseDTO cat = service.adicionarCategoria(novaCategoria);
