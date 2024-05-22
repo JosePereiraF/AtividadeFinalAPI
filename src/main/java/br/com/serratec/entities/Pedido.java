@@ -2,11 +2,15 @@ package br.com.serratec.entities;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import br.com.serratec.enums.StatusEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Pedido {
@@ -18,6 +22,9 @@ public class Pedido {
 	private LocalDate dataEntrega;
 	private StatusEnum status;
 	private boolean ativo;
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 	
 	public Pedido() {}
