@@ -49,5 +49,15 @@ public class ProdutoService {
 		
 	}
 	
+	public Produto produtoatualizar(Long id,Produto produto) {
+		Optional<Produto> produto1 = repository.findById(id);
+		if (produto1.isPresent()) {
+			produto.setId(id);
+			return repository.save(produto);
+		
+		}
+		return null;
+		
+	}
 	
 }
