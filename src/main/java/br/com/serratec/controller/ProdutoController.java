@@ -17,7 +17,7 @@ import br.com.serratec.entities.Produto;
 import br.com.serratec.services.ProdutoService;
 
 @RestController
-@RequestMapping("/produto")
+@RequestMapping("/produtos")
 public class ProdutoController {
 	
 	@Autowired
