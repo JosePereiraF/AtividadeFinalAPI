@@ -3,6 +3,7 @@ package br.com.serratec.services;
 
 
 import br.com.serratec.dtos.EnderecoResponseDTO;
+import br.com.serratec.dtos.ProdutoResponseDTO;
 import br.com.serratec.entities.Endereco;
 import br.com.serratec.exception.ResourceNotFoundException;
 import br.com.serratec.repositories.EnderecoRepository;
@@ -10,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EnderecoService {
@@ -39,6 +42,10 @@ public class EnderecoService {
     
     public EnderecoResponseDTO inserir(Endereco endereco){
         return new EnderecoResponseDTO(repository.save(endereco));
+    }
+    
+    public List<EnderecoResponseDTO> listarEnderecos(){
+        return repository.findAll().stream().map(end-> new EnderecoResponseDTO(end)).collect(Collectors.toList());
     }
     
 }
