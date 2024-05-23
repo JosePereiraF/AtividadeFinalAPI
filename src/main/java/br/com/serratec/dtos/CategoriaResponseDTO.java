@@ -24,7 +24,7 @@ public class CategoriaResponseDTO {
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}
