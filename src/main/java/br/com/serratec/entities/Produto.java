@@ -30,10 +30,10 @@ public class Produto {
 
 
 	public Produto(ProdutoRequestDTO produto) {
-		this.nome = produto.getNome();
-		this.descricao = produto.getDescricao();
-		this.precoUnitario = produto.getPrecoUnitario();
-		this.categoria = produto.getCategoria();
+		nome = produto.getNome();
+		descricao = produto.getDescricao();
+		precoUnitario = produto.getPrecoUnitario();
+		categoria = produto.getCategoria();
 	}
 
 	public Long getId() {

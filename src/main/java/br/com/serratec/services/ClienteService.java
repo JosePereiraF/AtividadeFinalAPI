@@ -3,6 +3,8 @@ package br.com.serratec.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.com.serratec.dtos.ClienteRequestDTO;
+import br.com.serratec.entities.Endereco;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public class ClienteService {
 
 	@Autowired
 	private ClienteRepository repository;
+
+	private Endereco endereco;
 	
 	public List<ClienteResponseDTO> listarClientes()
 	{
@@ -37,6 +41,13 @@ public class ClienteService {
 		{
 			return ResponseEntity.notFound().build();
 		}
+	}
+	
+	public ClienteResponseDTO cadastrarCliente(ClienteRequestDTO clienteRequestDTO){
+		Cliente cliente = new Cliente(clienteRequestDTO.getNome(),clienteRequestDTO.getTelefone(),
+				clienteRequestDTO.getEmail(), clienteRequestDTO.getCpf(), endereco);
+		Cliente clienteSalvo = repository.save(cliente);
+		return  new ClienteResponseDTO(clienteSalvo);
 	}
 	
 }
