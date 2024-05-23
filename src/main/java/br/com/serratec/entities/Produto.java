@@ -2,6 +2,7 @@ package br.com.serratec.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import br.com.serratec.dtos.ProdutoRequestDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +25,16 @@ public class Produto {
 	private Categoria categoria;
 	
 	public Produto() {}
+	
+
+
+
+	public Produto(ProdutoRequestDTO produto) {
+		this.nome = produto.getNome();
+		this.descricao = produto.getDescricao();
+		this.precoUnitario = produto.getPrecoUnitario();
+		this.categoria = produto.getCategoria();
+	}
 
 	public Long getId() {
 		return id;

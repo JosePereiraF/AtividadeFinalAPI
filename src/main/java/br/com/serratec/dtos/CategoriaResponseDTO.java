@@ -1,15 +1,28 @@
 package br.com.serratec.dtos;
 
+import java.util.List;
+
 import br.com.serratec.entities.Categoria;
+import br.com.serratec.entities.Produto;
 
 public class CategoriaResponseDTO {
 
 	private String nome;
 	private String descricao;
-
+	private List<Produto> produtos;
+	
 	public CategoriaResponseDTO(Categoria categoria) {
 		nome = categoria.getNome();
 		descricao = categoria.getDescricao();
+		
+	}
+	
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
 	public String getNome() {
