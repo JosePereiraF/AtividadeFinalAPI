@@ -17,7 +17,6 @@ public class ClienteRequestDTO {
     private String email;
     @CPF
     private String cpf;
-    @NotNull
     private Endereco endereco;
     
     public String getNome() {

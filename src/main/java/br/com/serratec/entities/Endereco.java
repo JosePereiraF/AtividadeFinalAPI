@@ -1,10 +1,12 @@
 package br.com.serratec.entities;
 
-import br.com.serratec.enums.EstadoEnum;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Endereco {
@@ -17,7 +19,8 @@ public class Endereco {
 	private String localidade;
 	private String uf;
 	private Integer igbe;
-	
+	@OneToMany(mappedBy = "endereco")
+	private List<Cliente> cliente;
 	public Long getId() {
 		return id;
 	}

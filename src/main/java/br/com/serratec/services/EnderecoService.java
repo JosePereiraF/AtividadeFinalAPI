@@ -20,10 +20,10 @@ public class EnderecoService {
     @Autowired
     private EnderecoRepository repository;
     
-    public EnderecoResponseDTO buscar(String cep){
+    public Endereco buscar(String cep){
         Optional<Endereco> endereco = Optional.ofNullable(repository.findByCep(cep));
         if(endereco.isPresent()){
-            return new EnderecoResponseDTO(endereco.get());
+            return endereco.get();
             
         }else {
             RestTemplate rs = new RestTemplate();
@@ -40,8 +40,8 @@ public class EnderecoService {
         }
     }
     
-    public EnderecoResponseDTO inserir(Endereco endereco){
-        return new EnderecoResponseDTO(repository.save(endereco));
+    public Endereco inserir(Endereco endereco){
+        return repository.save(endereco);
     }
     
     public List<EnderecoResponseDTO> listarEnderecos(){

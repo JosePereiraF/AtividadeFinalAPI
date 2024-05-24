@@ -26,7 +26,12 @@ public class ClienteService {
 	@Autowired
 	private MailConfig configEmail;
 
-	private Endereco endereco;
+	@Autowired
+	private EnderecoService enderecoService;
+	
+	
+	//na hora que criar o cliente cadastramos o endereco dele junto
+	// cadastrar o endereco antes e passar o id para o cliente
 
 	public List<ClienteResponseDTO> listarClientes() {
 		List<Cliente> clientes = repository.findAll();
@@ -46,18 +51,22 @@ public class ClienteService {
 		}
 	}
 
-	public ClienteResponseDTO cadastrarCliente(ClienteRequestDTO clienteRequestDTO) {
+	public ClienteResponseDTO cadastrarCliente(String cep,ClienteRequestDTO clienteRequestDTO) {
 		if (repository.findByEmail(clienteRequestDTO.getEmail()) != null) {
 			throw new EmailException("E-mail já existente no sistema.");
 		}
-		Cliente cliente = new Cliente(clienteRequestDTO.getNome(), clienteRequestDTO.getTelefone(),
-				clienteRequestDTO.getEmail(), clienteRequestDTO.getCpf(), endereco);
-		Cliente clienteSalvo = repository.save(cliente);
+			Endereco endereco = enderecoService.buscar(cep);
+
+			Cliente cliente = new Cliente(clienteRequestDTO.getNome(), clienteRequestDTO.getTelefone(),
+					clienteRequestDTO.getEmail(), clienteRequestDTO.getCpf(), endereco);
+			Cliente clienteSalvo = repository.save(cliente);
+			//Envio de e-mail informando a conclusão do cadastro.
+			configEmail.sendMail(cliente.getEmail(),"Cadastro de Cliente efetuado com Sucesso." ,cliente.toString());
+			
+			return new ClienteResponseDTO(clienteSalvo);
 		
-		//Envio de e-mail informando a conclusão do cadastro.
-		configEmail.sendMail(cliente.getEmail(),"Cadastro de Cliente efetuado com Sucesso." ,cliente.toString());
 		
-		return new ClienteResponseDTO(clienteSalvo);
+		
 	}
 
 	public ClienteResponseDTO atualizarCliente(Long id, Cliente cliente) {

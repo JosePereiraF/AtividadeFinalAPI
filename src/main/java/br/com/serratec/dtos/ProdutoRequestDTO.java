@@ -2,11 +2,17 @@ package br.com.serratec.dtos;
 
 import br.com.serratec.entities.Categoria;
 import br.com.serratec.entities.Produto;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class ProdutoRequestDTO {
-    
+    @NotBlank
     private String nome;
+    @NotBlank
     private String descricao;
+    @DecimalMin(value = "0.10")//testar se iss funciona
+    @NotNull
     private Double precoUnitario;
     private Categoria categoria;
     

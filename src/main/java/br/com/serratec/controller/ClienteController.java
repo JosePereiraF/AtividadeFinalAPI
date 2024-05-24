@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.serratec.dtos.ClienteRequestDTO;
@@ -35,9 +36,9 @@ public class ClienteController {
 		return service.listarClientePorId(id);
 	}
 	
-	@PostMapping("/cadastrar")
-		public ResponseEntity<ClienteResponseDTO> cadastrarCliente(@Valid @RequestBody ClienteRequestDTO clienteRequestDTODTO) {
-		return ResponseEntity.created(null).body(service.cadastrarCliente(clienteRequestDTODTO));
+	@PostMapping("/cadastrar/{cep}")
+		public ResponseEntity<ClienteResponseDTO> cadastrarCliente(@Valid @RequestBody ClienteRequestDTO clienteRequestDTODTO,@PathVariable String cep) {
+		return ResponseEntity.created(null).body(service.cadastrarCliente(cep,clienteRequestDTODTO));
 		
 	}
 	

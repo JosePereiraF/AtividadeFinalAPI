@@ -16,6 +16,7 @@ import br.com.serratec.dtos.ProdutoRequestDTO;
 import br.com.serratec.dtos.ProdutoResponseDTO;
 import br.com.serratec.entities.Produto;
 import br.com.serratec.services.ProdutoService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/produtos")
@@ -36,7 +37,7 @@ public class ProdutoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<ProdutoResponseDTO> produtoInserir (@RequestBody ProdutoRequestDTO produto){
+	public ResponseEntity<ProdutoResponseDTO> produtoInserir (@Valid @RequestBody ProdutoRequestDTO produto){
 		return ResponseEntity.created(null).body(service.inserirProduto(produto));
 	}
 	
