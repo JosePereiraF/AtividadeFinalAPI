@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import br.com.serratec.configuration.MailConfig;
 import br.com.serratec.dtos.ClienteRequestDTO;
 import br.com.serratec.dtos.ClienteResponseDTO;
 import br.com.serratec.entities.Cliente;
@@ -21,6 +22,9 @@ public class ClienteService {
 
 	@Autowired
 	private ClienteRepository repository;
+	
+	@Autowired
+	private MailConfig configEmail;
 
 	private Endereco endereco;
 
@@ -49,6 +53,10 @@ public class ClienteService {
 		Cliente cliente = new Cliente(clienteRequestDTO.getNome(), clienteRequestDTO.getTelefone(),
 				clienteRequestDTO.getEmail(), clienteRequestDTO.getCpf(), endereco);
 		Cliente clienteSalvo = repository.save(cliente);
+		
+		//Envio de e-mail informando a conclusão do cadastro.
+		configEmail.sendMail(cliente.getEmail(),"Cadastro de Cliente efetuado com Sucesso." ,cliente.toString());
+		
 		return new ClienteResponseDTO(clienteSalvo);
 	}
 
@@ -56,6 +64,10 @@ public class ClienteService {
 		Optional<Cliente> cli = repository.findById(id);
 		if (cli.isPresent()) {
 			cliente.setId(id);
+			
+			//Envio de e-mail informando a atualização de cadastro.
+			configEmail.sendMail(cliente.getEmail(),"Cadastro de Cliente Atualizado com Sucesso." ,cliente.toString());
+			
 			return new ClienteResponseDTO(repository.save(cliente));
 
 		} else {

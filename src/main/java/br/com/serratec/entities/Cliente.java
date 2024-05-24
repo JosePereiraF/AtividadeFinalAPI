@@ -89,4 +89,11 @@ public class Cliente {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
+	@Override
+	public String toString() {
+		return "\nDados do Cliente: \nCliente: " + nome + "\nNúmero de Telefone:" + telefone + "\nEmail:" + email + "\nCPF:" + cpf;
+	}
+	
+	
 }
