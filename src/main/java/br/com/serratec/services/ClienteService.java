@@ -38,17 +38,15 @@ public class ClienteService {
 		return clientes.stream().map((cli) -> new ClienteResponseDTO(cli)).collect(Collectors.toList());
 	}
 
-	public ResponseEntity<ClienteResponseDTO> listarClientePorId(Long id) {
+	public ClienteResponseDTO listarClientePorId(Long id) {
 		Cliente cli;
 
 		if (repository.existsById(id)) {
 			cli = repository.findById(id).get();
-			return ResponseEntity.ok(new ClienteResponseDTO(cli));
+			return new ClienteResponseDTO(cli);
 		}
+		throw new ResourceNotFoundException("Cliente não encontrado");
 
-		else {
-			return ResponseEntity.notFound().build();
-		}
 	}
 
 	public ClienteResponseDTO cadastrarCliente(String cep,ClienteRequestDTO clienteRequestDTO) {
@@ -73,7 +71,7 @@ public class ClienteService {
 		Optional<Cliente> cli = repository.findById(id);
 		if (cli.isPresent()) {
 			cliente.setId(id);
-			
+			cliente.setEndereco(cli.get().getEndereco());
 			//Envio de e-mail informando a atualização de cadastro.
 			configEmail.sendMail(cliente.getEmail(),"Cadastro de Cliente Atualizado com Sucesso." ,cliente.toString());
 			

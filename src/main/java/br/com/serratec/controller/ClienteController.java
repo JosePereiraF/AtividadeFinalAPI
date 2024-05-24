@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.serratec.dtos.ClienteRequestDTO;
@@ -33,7 +32,8 @@ public class ClienteController {
 	
 	@GetMapping("/listarClientePorId/{id}")
 	public ResponseEntity<ClienteResponseDTO> listarClientePorId(@PathVariable Long id) {
-		return service.listarClientePorId(id);
+		return ResponseEntity.ok(service.listarClientePorId(id));
+		
 	}
 	
 	@PostMapping("/cadastrar/{cep}")
