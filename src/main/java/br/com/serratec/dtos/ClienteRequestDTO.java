@@ -1,12 +1,23 @@
 package br.com.serratec.dtos;
 
+import org.hibernate.validator.constraints.br.CPF;
+
+import br.com.serratec.customannotation.Telefone;
 import br.com.serratec.entities.Endereco;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class ClienteRequestDTO {
-    private String nome;
+    @NotBlank
+	private String nome;
+    @Telefone
     private String telefone;
+    @Email
     private String email;
+    @CPF
     private String cpf;
+    @NotNull
     private Endereco endereco;
     
     public String getNome() {
