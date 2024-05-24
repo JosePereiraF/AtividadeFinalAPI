@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.serratec.dtos.CategoriaRequestDTO;
 import br.com.serratec.dtos.CategoriaResponseDTO;
 import br.com.serratec.entities.Categoria;
+import br.com.serratec.exception.ResourceNotFoundException;
 import br.com.serratec.repositories.CategoriaRepository;
 
 @Service
@@ -41,37 +42,30 @@ public class CategoriaService {
 
 	}
 	
-	public ResponseEntity<Categoria> atualizarCategoria( Long id, CategoriaRequestDTO categoria)
+	public CategoriaResponseDTO atualizarCategoria( Long id, CategoriaRequestDTO categoria)
 	{
 		Categoria catAtualizada;
 		
 		if(repository.existsById(id))
 		{
 			catAtualizada = new Categoria(id, categoria.getNome(),categoria.getDescricao());
-			return ResponseEntity.ok(repository.save(catAtualizada));
+			return new CategoriaResponseDTO(repository.save(catAtualizada));
 		}
 		
-		else
-		{
-			return ResponseEntity.notFound().build();
-		}
+		throw new ResourceNotFoundException("Categoria não encontrada");
 		
 	}
 	
-	public ResponseEntity<CategoriaResponseDTO> listarCategoriaPorId (Long id)
+	public CategoriaResponseDTO listarCategoriaPorId (Long id)
 	{
 		Categoria cat; 
 		
 		if(repository.existsById(id)) 
 		{
 			cat = repository.findById(id).get();
-			return  ResponseEntity.ok(new CategoriaResponseDTO(cat));
+			return  new CategoriaResponseDTO(cat);
 		}
-		
-		else 
-		{
-			return ResponseEntity.notFound().build();
-		}
+		throw new ResourceNotFoundException("Categoria não encontrada");
 	}
 
 }

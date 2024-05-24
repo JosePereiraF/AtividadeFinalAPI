@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.serratec.dtos.CategoriaRequestDTO;
 import br.com.serratec.dtos.CategoriaResponseDTO;
-import br.com.serratec.entities.Categoria;
 import br.com.serratec.services.CategoriaService;
 
 @RestController
@@ -32,7 +31,8 @@ public class CategoriaController {
 	@GetMapping("/listarCategoriaPorId/{id}")
 	public ResponseEntity<CategoriaResponseDTO> listarCategoriaPorId(@PathVariable Long id)
 	{
-		return service.listarCategoriaPorId(id);
+		return ResponseEntity.ok(service.listarCategoriaPorId(id));
+		
 		
 	}
 	
@@ -44,9 +44,10 @@ public class CategoriaController {
 	}
 	
 	@PutMapping("/atualizarCategoria/{id}")
-	public ResponseEntity<Categoria> atualizarCategoria ( @PathVariable Long id, @RequestBody CategoriaRequestDTO catAtualizada)
+	public ResponseEntity<CategoriaResponseDTO> atualizarCategoria ( @PathVariable Long id, @RequestBody CategoriaRequestDTO catAtualizada)
 	{
-		return service.atualizarCategoria(id, catAtualizada);
+		return ResponseEntity.ok(service.atualizarCategoria(id, catAtualizada));
+		
 	}
 
 }

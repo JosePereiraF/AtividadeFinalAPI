@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import br.com.serratec.dtos.PedidoRequestDTO;
 import br.com.serratec.enums.StatusEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,10 +30,17 @@ public class Pedido {
 	private Cliente cliente;
 	
 	public Pedido() {}
-    
-    public Pedido(Integer numeroDoPedido, LocalDate dataPedido, LocalDate dataEntrega, StatusEnum status) {
-    }
+   
 	
+	public Pedido(PedidoRequestDTO pedidoRequestDTO) {
+		this.numeroDoPedido = pedidoRequestDTO.getNumeroDoPedido();
+		this.dataPedido = pedidoRequestDTO.getDataPedido();
+		this.dataEntrega = pedidoRequestDTO.getDataEntrega();;
+		this.status = pedidoRequestDTO.getStatus();
+		this.ativo = true;
+		this.cliente = pedidoRequestDTO.getCliente();
+	}
+
 	public Integer getNumeroDoPedido() {
 		return numeroDoPedido;
 	}

@@ -44,8 +44,7 @@ public class PedidoService {
     
     public PedidoResponseDTO cadastrarPedido(PedidoRequestDTO pedidoRequestDTO){
         
-        Pedido pedido = new Pedido(pedidoRequestDTO.getNumeroDoPedido(),pedidoRequestDTO.getDataPedido(),
-                pedidoRequestDTO.getDataEntrega(), pedidoRequestDTO.getStatus());
+        Pedido pedido = new Pedido(pedidoRequestDTO);
         Pedido pedidoSalvo = repository.save(pedido);
         System.out.println("pedidoRequestDTO = " + pedidoRequestDTO);
         System.out.println("pedido = " + pedido);
