@@ -18,6 +18,7 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private Integer numeroDoPedido;
 	private LocalDate dataPedido;
 	private LocalDate dataEntrega;
 	private StatusEnum status;
@@ -28,7 +29,18 @@ public class Pedido {
 	private Cliente cliente;
 	
 	public Pedido() {}
-
+    
+    public Pedido(Integer numeroDoPedido, LocalDate dataPedido, LocalDate dataEntrega, StatusEnum status) {
+    }
+	
+	public Integer getNumeroDoPedido() {
+		return numeroDoPedido;
+	}
+	
+	public void setNumeroDoPedido(Integer numeroDoPedido) {
+		this.numeroDoPedido = numeroDoPedido;
+	}
+	
 	public Long getId() {
 		return id;
 	}

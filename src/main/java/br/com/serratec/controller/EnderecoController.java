@@ -2,6 +2,7 @@ package br.com.serratec.controller;
 
 import br.com.serratec.dtos.EnderecoResponseDTO;
 import br.com.serratec.dtos.ProdutoResponseDTO;
+import br.com.serratec.entities.Endereco;
 import br.com.serratec.services.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +27,8 @@ public class EnderecoController {
     }
     
     @GetMapping("{cep}")
-    public ResponseEntity<EnderecoResponseDTO>burcarCep(@PathVariable String cep){
-        EnderecoResponseDTO dto = service.buscar(cep);
+    public ResponseEntity<Endereco>burcarCep(@PathVariable String cep){
+        Endereco dto = service.buscar(cep);
         if(dto==null) {
             return ResponseEntity.notFound().build();
         }
