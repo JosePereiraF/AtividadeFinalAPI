@@ -11,15 +11,17 @@ public class Carrinho {
 	private ProdutoPedidoId id = new ProdutoPedidoId();
 	private Integer quantidade;
 	
-	private Carrinho() {}
-	
-	
-
 	public Carrinho(CarrinhoRequestDTO carrinho,Pedido pedido, Produto produto) {
 		super();
-		this.id.setPedido(null);
-		this.id.setProduto(null);
+		this.id.setPedido(pedido);
+		this.id.setProduto(produto);
 		this.quantidade = carrinho.getQuantidade();
+	}
+
+
+	
+	public Carrinho() {
+		super();
 	}
 
 
@@ -38,6 +40,14 @@ public class Carrinho {
 
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Carrinho [id=" + id + ", quantidade=" + quantidade + ", getId()=" + getId() + ", getQuantidade()="
+				+ getQuantidade() + "]";
 	}
 	
 	

@@ -2,11 +2,13 @@ package br.com.serratec.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.serratec.dtos.CarrinhoRequestDTO;
+import br.com.serratec.dtos.CarrinhoResponseDTO;
 import br.com.serratec.entities.Carrinho;
 import br.com.serratec.entities.Pedido;
 import br.com.serratec.entities.Produto;
@@ -26,30 +28,36 @@ public class CarrinhoService {
 	@Autowired
 	private PeditoRepository pedRepository;
 	
-	public List<Carrinho> listaCarrinho(){
-		return repository.findAll();
+	public List<CarrinhoResponseDTO> listaCarrinho(){
+		return repository.findAll().stream().map(l -> new CarrinhoResponseDTO()).collect(Collectors.toList());
 	}
-	public Carrinho buscarCarrinho(ProdutoPedidoId id){
+	public CarrinhoResponseDTO buscarCarrinho(ProdutoPedidoId id){
 		Optional<Carrinho> carrinho = repository.findById(id); // Optional == achar 1 coisa especificar
 		if(carrinho.isPresent()) {
-			return carrinho.get();
+			return new CarrinhoResponseDTO(carrinho.get());
 		}
 		throw new ResourceNotFoundException("Carrinho não encontrado!");
 	}
-	public Carrinho inserirCarrinho(CarrinhoRequestDTO carrinho){
-		if(carrinho == null) throw new ResourceNotFoundException("Carrinho inválido");
-		Optional<Produto> produto = prodRepository.findById(carrinho.getIdProduto());
-		Optional<Pedido> pedido = pedRepository.findById(carrinho.getIdProduto());
-		System.out.println(produto.get());
-		System.out.println(pedido.get());
-		return repository.save(new Carrinho(carrinho,pedido.get(),produto.get()));
-		
-	}
-	public Carrinho atualizarCarrinho(Carrinho carrinho, ProdutoPedidoId id) {
+	
+	public CarrinhoResponseDTO atualizarCarrinho(Carrinho carrinho, ProdutoPedidoId id) {
 		Optional<Carrinho> carrinhoAntigo = repository.findById(id);
 		if(carrinhoAntigo == null) throw new ResourceNotFoundException("Carrinho inválido");
 		carrinho.setId(id);
-		return repository.save(carrinho);
+		return new CarrinhoResponseDTO(repository.save(carrinho));
+		
 	}
-	
+	public CarrinhoResponseDTO inserirCarrinho(CarrinhoRequestDTO carrinho){
+
+        if(carrinho == null) throw new ResourceNotFoundException("Carrinho inválido");
+        Optional<Produto> produto = prodRepository.findById(carrinho.getIdProduto());
+        Optional<Pedido> pedido = pedRepository.findById(carrinho.getIdPedido());
+        
+        Carrinho carrinho1 = new Carrinho(carrinho,pedido.get(),produto.get());
+        repository.save(carrinho1);
+        carrinho1.getId().setPedido(pedido.get());;
+        carrinho1.getId().setProduto(produto.get());
+    
+        return new CarrinhoResponseDTO(carrinho1);
+
+    }
 }

@@ -14,6 +14,7 @@ public class ProdutoRequestDTO {
     @DecimalMin(value = "0.10")//testar se iss funciona
     @NotNull
     private Double precoUnitario;
+    @NotNull
     private Categoria categoria;
     
     public ProdutoRequestDTO() {

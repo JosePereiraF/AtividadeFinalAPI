@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.serratec.dtos.CarrinhoRequestDTO;
+import br.com.serratec.dtos.CarrinhoResponseDTO;
 import br.com.serratec.entities.Carrinho;
 import br.com.serratec.entities.ProdutoPedidoId;
 import br.com.serratec.services.CarrinhoService;
@@ -25,22 +26,22 @@ public class CarrinhoController {
 	private CarrinhoService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Carrinho>> listaCarrinho(){
+	public ResponseEntity<List<CarrinhoResponseDTO>> listaCarrinho(){
 		return ResponseEntity.ok(service.listaCarrinho());
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Carrinho> buscarCarrinho(@PathVariable ProdutoPedidoId id){
+	public ResponseEntity<CarrinhoResponseDTO> buscarCarrinho(@PathVariable ProdutoPedidoId id){
 		return ResponseEntity.ok(service.buscarCarrinho(id));
 	}
 	
 	@PostMapping
-	public ResponseEntity<Carrinho> inserirCarrinho(@RequestBody CarrinhoRequestDTO carrinho){
+	public ResponseEntity<CarrinhoResponseDTO> inserirCarrinho(@RequestBody CarrinhoRequestDTO carrinho){
 		return ResponseEntity.created(null).body(service.inserirCarrinho(carrinho));
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Carrinho> atualizarCarrinho(@PathVariable ProdutoPedidoId id,@RequestBody Carrinho carrinho){
+	public ResponseEntity<CarrinhoResponseDTO> atualizarCarrinho(@PathVariable ProdutoPedidoId id,@RequestBody Carrinho carrinho){
 		return ResponseEntity.ok(service.atualizarCarrinho(carrinho, id)); 
 	}
 }

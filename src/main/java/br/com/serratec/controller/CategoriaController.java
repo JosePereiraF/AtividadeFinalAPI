@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.serratec.dtos.CategoriaRequestDTO;
 import br.com.serratec.dtos.CategoriaResponseDTO;
 import br.com.serratec.services.CategoriaService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/categorias")
@@ -37,7 +38,7 @@ public class CategoriaController {
 	}
 	
 	@PostMapping("/adicionarCategoria")
-	public ResponseEntity<CategoriaResponseDTO> adicionarCategoria(@RequestBody CategoriaRequestDTO novaCategoria) {
+	public ResponseEntity<CategoriaResponseDTO> adicionarCategoria(@Valid @RequestBody CategoriaRequestDTO novaCategoria) {
 		CategoriaResponseDTO cat = service.adicionarCategoria(novaCategoria);
 		return ResponseEntity.created(null).body(cat);
 

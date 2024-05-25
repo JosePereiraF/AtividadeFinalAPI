@@ -33,4 +33,10 @@ public class ProdutoPedidoId {
 		this.produto = produto;
 	}
 
+	@Override
+	public String toString() {
+		return "ProdutoPedidoId [pedido=" + pedido + ", produto=" + produto + "]";
+	}
+	
+
 }
