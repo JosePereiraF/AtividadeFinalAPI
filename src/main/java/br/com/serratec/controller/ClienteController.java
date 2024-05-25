@@ -37,8 +37,8 @@ public class ClienteController {
 	}
 	
 	@PostMapping("/cadastrar/{cep}")
-		public ResponseEntity<ClienteResponseDTO> cadastrarCliente(@Valid @RequestBody ClienteRequestDTO clienteRequestDTODTO,@PathVariable String cep) {
-		return ResponseEntity.created(null).body(service.cadastrarCliente(cep,clienteRequestDTODTO));
+		public ResponseEntity<ClienteResponseDTO> cadastrarCliente(@Valid @RequestBody ClienteRequestDTO clienteRequestDTO,@PathVariable String cep) {
+		return ResponseEntity.created(null).body(service.cadastrarCliente(cep,clienteRequestDTO));
 		
 	}
 	

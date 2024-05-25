@@ -8,7 +8,7 @@ public class EnderecoResponseDTO {
     private String complemento;
     private String localidade;
     private String uf;
-    private Integer igbe;
+
     
     public EnderecoResponseDTO(Endereco endereco) {
         cep = endereco.getCep();
@@ -16,7 +16,7 @@ public class EnderecoResponseDTO {
         complemento = endereco.getComplemento();
         localidade = endereco.getLocalidade();
         uf = endereco.getUf();
-        igbe = endereco.getIgbe();
+     
     }
     
     public String getCep() {
@@ -58,12 +58,5 @@ public class EnderecoResponseDTO {
     public void setUf(String uf) {
         this.uf = uf;
     }
-    
-    public Integer getIgbe() {
-        return igbe;
-    }
-    
-    public void setIgbe(Integer igbe) {
-        this.igbe = igbe;
-    }
+  
 }

@@ -18,7 +18,6 @@ public class Endereco {
 	private String complemento;
 	private String localidade;
 	private String uf;
-	private Integer igbe;
 	@OneToMany(mappedBy = "endereco")
 	private List<Cliente> cliente;
 	public Long getId() {
@@ -69,11 +68,5 @@ public class Endereco {
 		this.uf = uf;
 	}
 	
-	public Integer getIgbe() {
-		return igbe;
-	}
-	
-	public void setIgbe(Integer igbe) {
-		this.igbe = igbe;
-	}
+
 }
