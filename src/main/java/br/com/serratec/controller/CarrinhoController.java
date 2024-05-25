@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.serratec.dtos.CarrinhoRequestDTO;
 import br.com.serratec.entities.Carrinho;
 import br.com.serratec.entities.ProdutoPedidoId;
 import br.com.serratec.services.CarrinhoService;
@@ -34,7 +35,7 @@ public class CarrinhoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Carrinho> inserirCarrinho(@RequestBody Carrinho carrinho){
+	public ResponseEntity<Carrinho> inserirCarrinho(@RequestBody CarrinhoRequestDTO carrinho){
 		return ResponseEntity.created(null).body(service.inserirCarrinho(carrinho));
 	}
 	
