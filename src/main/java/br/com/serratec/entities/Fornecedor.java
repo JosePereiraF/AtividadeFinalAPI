@@ -1,5 +1,7 @@
 package br.com.serratec.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import br.com.serratec.dtos.FornecedorRequestDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +21,7 @@ public class Fornecedor {
 	private Boolean ativo;
 
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 	

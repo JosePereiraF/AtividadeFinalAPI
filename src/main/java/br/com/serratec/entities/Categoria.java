@@ -2,6 +2,8 @@ package br.com.serratec.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class Categoria {
 	@OneToMany(mappedBy = "categoria")
 	private List<Produto> produtos;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "categoria")
 	private List<Fornecedor> fornecedores;
 
