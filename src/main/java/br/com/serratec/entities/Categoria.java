@@ -22,7 +22,7 @@ public class Categoria {
 	@OneToMany(mappedBy = "categoria")
 	private List<Produto> produtos;
 	
-	//@JsonManagedReference
+	@JsonManagedReference
 	@OneToMany(mappedBy = "categoria")
 	private List<Fornecedor> fornecedores;
 
