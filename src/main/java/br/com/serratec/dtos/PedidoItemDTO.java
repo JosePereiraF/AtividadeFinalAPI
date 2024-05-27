@@ -1,11 +1,15 @@
 package br.com.serratec.dtos;
 
 import br.com.serratec.entities.Carrinho;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 public class PedidoItemDTO {
-
+	@NotNull
 	private String nomeProduto;
+	@NotNull
 	private Double valorPedido;
+	@Positive
 	private Integer quantidade;
 
 	public PedidoItemDTO(Carrinho produto) {
