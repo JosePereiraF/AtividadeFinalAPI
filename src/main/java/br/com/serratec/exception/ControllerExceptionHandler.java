@@ -51,4 +51,16 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(er);
 		
 	}
+	
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex){
+		
+		List<String> erros = new ArrayList<>();
+		erros.add(ex.getMessage());
+		
+		ErroResposta er = new ErroResposta(HttpStatus.NOT_FOUND.value(), "Problemas na operação, favor verificar.",
+				LocalDateTime.now(), erros);
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(er);
+		
+	}
 }
