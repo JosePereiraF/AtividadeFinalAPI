@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carinho de Compras - Mundo Smart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="shortcut icon" type="imagex/png" href="../imagens/logoOBicho.png">
+    <link rel="stylesheet" href="../styles/styleCarrinho.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg" style="background-color: #d9d9d9;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../pg-início/index.html"><img class="logo" src="../imagens/Logo.png" height="150px" alt="Logo da Mundo smart que é uma lua escrita 'Mundo Smart' com um celular"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" id="paginaP" href="../pg-início/index.html">Pagina Principal</a>
+                        </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="produto" href="./Produto.html">Produtos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="img_carrinho" href="./Carrinho.html"><img src="../imagens/Carrinho.png" height="95px" alt="um carrinho de compra com um celular e um pokemon chamado Kakuna"></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <main>
+        <div class="left-container">
+        <div class="top-left-container">
+        <form action="">
+            <label for="opcao"><h2>Formas de Pagamento</h2></label>
+            <br>
+            <input type="radio" id="a-vista" class=a-vista name="opcao" value="a-vista"></input>
+            <label for="a-vista" id="aVista"></label>
+            <br>
+            <input type="radio" id="a-prazo" class="a-prazo" name="opcao" value="a-prazo"></input>
+            <label for="a-prazo" id="aPrazo"></label>
+            <br>
+        </form>
+        </div>
+        <div class="bottom-left-container">
+        <div class="bottom-left-box">
+                <div class="bottom-image" href="" ><img src="../imagens/Frete.png" height="95px" alt="Mascote da loja Mundo Smart em um caminhão."></div>
+        </div>
+        <div class="bottom-right-box">
+            <h2 class="ultimo-subtitulo">Frete Grátis</h2>
+            <p>Garantimos a entrega do seu pedido por nossa conta.</p>
+        </div>
+        </div>
+        </div>
+
+        <div class="right-container">
+        <div class="top-right-container">
+            <div class="top-box">
+            <h2 class="titulo-smartphone" id="titulo-smartphone"></h2>
+            </div>
+            <div class="bottom-box">
+            <div class="6" id="imagem-smartphone">
+                <!-- <img src="../imagens/Galaxy-A55-padrao-sombra.png" height="200px"> -->
+            </div>
+            <div class="descricao-smartphone">
+               
+                
+            </div>
+            </div>
+        </div>
+        <div class="bottom-right-container">
+            <div class="botao-de-compra" id="botao-de-compra">
+                <a class="botao-confirmar-compra" id="botao-confirmar-compra">Confirmar Compra</a>
+        
+            </div>
+        </div>
+        </div>
+
+        </div>
+    </main>
+    <footer>
+        <div>
+            <h1>Equipe</h1>
+            <p>José Fernando <br>Leony Santos <br>Lucas de Araujo <br> Marcela Andriolo <br>Maycon Statzner <br> Rodrigo Justen <br>O Bicho</p>
+        </div>
+        <div>
+            <h1>EMAIL</h1>
+            <p> OBicho@gmail.com</p>
+        </div>
+        <div>
+            <h1> TELEFONE</h1>
+            <p>(555) xxxxxxxx</p>
+        </div>
+    </footer>
+    <script src="../scripts/carrinho.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
