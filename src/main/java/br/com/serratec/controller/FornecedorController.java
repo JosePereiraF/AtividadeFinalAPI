@@ -86,14 +86,26 @@ public class FornecedorController {
 	}
 
 	@PutMapping("/deleteLogicoFornecedor/{id}")
-	@Operation(summary = "Inativar Fornecedor - DELETE LÓGICO", description = "Atualiza o status 'Ativo' de um Fornecedor existente para 'Falso'.")
+	@Operation(summary = "Inativar Fornecedor - DELETE LÓGICO", description = "Atualiza o status 'Ativo' de um Fornecedor existente para 'FALSE'.")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Cliente inativado com sucesso", content = {
+			@ApiResponse(responseCode = "200", description = "Fornecedor inativado com sucesso", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = FornecedorResponseDTO.class)) }),
 			@ApiResponse(responseCode = "400", description = "Dados inválidos", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Fornecedor não encontrado", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Erro interno do servidor", content = @Content) })
 	public String deleteLogicoFornecedor(@PathVariable Long id) {
 		return service.deleteLogicoFornecedor(id);
+	}
+	
+	@PutMapping("/reativarLogicoFornecedor/{id}")
+	@Operation(summary = "Reativar Fornecedor - Dezfaz delete Lógico", description = "Atualiza o status 'Ativo' de um Fornecedor existente para 'TRUE'.")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Fornecedor inativado com sucesso", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = FornecedorResponseDTO.class)) }),
+			@ApiResponse(responseCode = "400", description = "Dados inválidos", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Fornecedor não encontrado", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Erro interno do servidor", content = @Content) })
+	public String reativarLogicoFornecedor(@PathVariable Long id) {
+		return service.reativarLogicoFornecedor(id);
 	}
 }

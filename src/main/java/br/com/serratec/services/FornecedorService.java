@@ -67,42 +67,60 @@ public class FornecedorService {
 				f.setTelefone(request.getTelefone());
 				f.setEmail(request.getEmail());
 				f.setCategoria(categoria.get());
-				f.setId(id);
 				repository.save(f);
 				return new FornecedorResponseDTO(f);
 
+			} else {
+				throw new ResourceNotFoundException("Não foi possível atualizar. Categoria inexistente");
 			}
-
-			f.setId(id);
-			f.setCategoria(fornecedor.get().getCategoria());
-			repository.save(f);
-			return new FornecedorResponseDTO(f);
+		} else {
+			throw new ResourceNotFoundException("Não foi possível atualizar. Fornecedor não encontrado.");
 		}
-		throw new ResourceNotFoundException("Não foi possível atualizar. Fornecedor não Encontrado.");
 	}
 
 	@Transactional
 	// executa o Delete Lógico do Fornecedor
 	public String deleteLogicoFornecedor(Long id) {
-		Fornecedor fornecedor = repository.findById(id)
+		Fornecedor f = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Impossível deletar. Fornecedor não encontrado"));
-		fornecedor.setAtivo(false);
-		repository.save(fornecedor);
-		return "Fornecedor de id " + id + " foi inativado.";
+		if(f.getAtivo().equals(true))
+		{
+			f.setAtivo(false);
+			repository.save(f);
+			return "Fornecedor de id " + id + " foi inativado.";
+		}
+		else 
+		{
+			return "Fornecedor de id " + id + " Já está inativo";
+		}
 
 	}
+	
+	@Transactional
+	// reativa o Fornecedor
+	public String reativarLogicoFornecedor(Long id) {
+		Fornecedor f = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Impossível deletar. Fornecedor não encontrado"));
+		if(f.getAtivo().equals(false))
+		{
+			f.setAtivo(true);
+			repository.save(f);
+			return "Fornecedor de id " + id + " foi reativado.";
+		}
+		else 
+		{
+			return "Fornecedor de id " + id + " Já está ativo";
+		}
+			}
 
 	// exclui o fornecedor do banco de dados da API
 	public ResponseEntity<Fornecedor> excluirFornecedor(Long id) {
-				
+
 		Optional<Fornecedor> fornecedor = repository.findById(id);
-		if (fornecedor.isPresent())
-		{
+		if (fornecedor.isPresent()) {
 			repository.deleteById(id);
 			return ResponseEntity.noContent().build();
-		}
-		else
-		{
+		} else {
 			throw new ResourceNotFoundException("Não foi possível excluir. Fornecedor não encontrado.");
 		}
 	}
