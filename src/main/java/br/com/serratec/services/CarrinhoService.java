@@ -29,7 +29,7 @@ public class CarrinhoService {
 	private PeditoRepository pedRepository;
 	
 	public List<CarrinhoResponseDTO> listaCarrinho(){
-		return repository.findAll().stream().map(l -> new CarrinhoResponseDTO()).collect(Collectors.toList());
+		return repository.findAll().stream().map(l -> new CarrinhoResponseDTO(l)).collect(Collectors.toList());
 	}
 	public CarrinhoResponseDTO buscarCarrinho(ProdutoPedidoId id){
 		Optional<Carrinho> carrinho = repository.findById(id); // Optional == achar 1 coisa especificar
