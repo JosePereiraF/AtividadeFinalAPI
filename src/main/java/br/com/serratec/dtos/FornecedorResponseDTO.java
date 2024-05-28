@@ -1,6 +1,5 @@
 package br.com.serratec.dtos;
 
-import br.com.serratec.entities.Categoria;
 import br.com.serratec.entities.Fornecedor;
 
 public class FornecedorResponseDTO {
@@ -9,14 +8,15 @@ public class FornecedorResponseDTO {
 	private String telefone;
 	private String email;
 	
-	private Categoria categoria;
+	private String nomeCategoria;
 	
 	public FornecedorResponseDTO (Fornecedor fornecedor)
 	{
 		nome = fornecedor.getNome();
 		telefone = fornecedor.getTelefone();
 		email = fornecedor.getEmail();
-		categoria = fornecedor.getCategoria();
+		nomeCategoria = fornecedor.getCategoria().getNome();
+		
 	}
 
 	public String getNome() {
@@ -31,8 +31,8 @@ public class FornecedorResponseDTO {
 		return email;
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
+	public String getNomeCategoria() {
+		return nomeCategoria;
 	}
 
 	public void setNome(String nome) {
@@ -47,9 +47,12 @@ public class FornecedorResponseDTO {
 		this.email = email;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+
+	public void setNomeCategoria(String nomeCategoria) {
+		this.nomeCategoria = nomeCategoria;
 	}
+
+	
 	
 	
 }

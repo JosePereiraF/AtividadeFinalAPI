@@ -94,10 +94,15 @@ public class FornecedorService {
 
 	// exclui o fornecedor do banco de dados da API
 	public ResponseEntity<Fornecedor> excluirFornecedor(Long id) {
-		try {
+				
+		Optional<Fornecedor> fornecedor = repository.findById(id);
+		if (fornecedor.isPresent())
+		{
 			repository.deleteById(id);
 			return ResponseEntity.noContent().build();
-		} catch (EmptyResultDataAccessException ex) {
+		}
+		else
+		{
 			throw new ResourceNotFoundException("Não foi possível excluir. Fornecedor não encontrado.");
 		}
 	}

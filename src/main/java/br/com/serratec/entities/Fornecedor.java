@@ -20,8 +20,8 @@ public class Fornecedor {
 	private String email;
 	private Boolean ativo;
 
-	@ManyToOne
 	@JsonBackReference
+	@ManyToOne
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 	
