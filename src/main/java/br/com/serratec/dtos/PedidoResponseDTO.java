@@ -13,7 +13,9 @@ public class PedidoResponseDTO {
     private LocalDate dataEntrega;
     private StatusEnum status;
     private boolean ativo;
-    private Cliente cliente;
+   
+
+    private String nomeCliente;
     
     public PedidoResponseDTO(Pedido pedido) {
         numeroDoPedido = pedido.getNumeroDoPedido();
@@ -21,7 +23,7 @@ public class PedidoResponseDTO {
         dataEntrega = pedido.getDataEntrega();
         status = pedido.getStatus();
         ativo = pedido.isAtivo();
-        cliente = pedido.getCliente();
+        this.nomeCliente = pedido.getCliente().getNome();
     }
     
     public Integer getNumeroDoPedido() {
@@ -63,24 +65,12 @@ public class PedidoResponseDTO {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-    
-    public Cliente getCliente() {
-        return cliente;
+    public String getNomeCliente() {
+        return nomeCliente;
     }
-    
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
     }
-    
-    @Override
-    public String toString() {
-        return "PedidoResponseDTO{" +
-                "numeroDoPedido=" + numeroDoPedido +
-                ", dataPedido=" + dataPedido +
-                ", dataEntrega=" + dataEntrega +
-                ", status=" + status +
-                ", ativo=" + ativo +
-                ", cliente=" + cliente +
-                '}';
-    }
+   
 }
