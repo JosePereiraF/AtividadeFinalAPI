@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import br.com.serratec.dtos.ProdutoRequestDTO;
 import br.com.serratec.dtos.ProdutoResponseDTO;
@@ -64,6 +67,9 @@ public class ProdutoService {
 			}
 		}
 		throw new ResourceNotFoundException("Produto não encontrado");
+	}
+	public List<ProdutoResponseDTO> listaPorPagina(Pageable page) {
+		return repository.findAll(page).stream().map(l -> new ProdutoResponseDTO(l)).collect(Collectors.toList());
 	}
 	
 }

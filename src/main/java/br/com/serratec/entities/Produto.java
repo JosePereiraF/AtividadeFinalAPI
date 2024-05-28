@@ -18,12 +18,18 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Produto {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	private String descricao;
+	private Imagem imagem;
+	private String processador;
+	private String chipset;
+	private String armazenamento;
+	private String tamTela;
+	private String camera;
+	private String ram;
 	private Double precoUnitario;
 	@JsonBackReference
 	@ManyToOne
@@ -31,33 +37,30 @@ public class Produto {
 	private Categoria categoria;
 	@OneToMany(mappedBy = "id.produto", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Carrinho> carrinho = new HashSet<>();
-	
-	public Produto() {}
-	
 
-
+	public Produto() {
+	}
 
 	public Produto(ProdutoRequestDTO produto) {
 		nome = produto.getNome();
-		descricao = produto.getDescricao();
-		precoUnitario = produto.getPrecoUnitario();
-		categoria = produto.getCategoria();
+		this.processador = produto.getProcessador();
+        this.chipset = produto.getChipset();
+        this.armazenamento = produto.getArmazenamento();
+        this.tamTela = produto.getTamTela();
+        this.camera = produto.getCamera();
+		this.precoUnitario = produto.getPrecoUnitario();
+		this.categoria = produto.getCategoria();
+		this.ram = produto.getRam();
+		this.imagem = produto.getImg();
 	}
-	
 
 	public Set<Carrinho> getCarrinho() {
 		return carrinho;
 	}
 
-
-
-
 	public void setCarrinho(Set<Carrinho> carrinho) {
 		this.carrinho = carrinho;
 	}
-
-
-
 
 	public Long getId() {
 		return id;
@@ -65,10 +68,6 @@ public class Produto {
 
 	public String getNome() {
 		return nome;
-	}
-
-	public String getDescricao() {
-		return descricao;
 	}
 
 	public Double getPrecoUnitario() {
@@ -87,10 +86,6 @@ public class Produto {
 		this.nome = nome;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
 	public void setPrecoUnitario(Double precoUnitario) {
 		this.precoUnitario = precoUnitario;
 	}
@@ -99,15 +94,62 @@ public class Produto {
 		this.categoria = categoria;
 	}
 
+	public String getProcessador() {
+		return processador;
+	}
 
+	public void setProcessador(String processador) {
+		this.processador = processador;
+	}
 
+	public String getChipset() {
+		return chipset;
+	}
 
-	@Override
-	public String toString() {
-		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", precoUnitario=" + precoUnitario
-				+ ", categoria=" + categoria + ", carrinho=" + carrinho + "]";
+	public void setChipset(String chipset) {
+		this.chipset = chipset;
+	}
+
+	public String getArmazenamento() {
+		return armazenamento;
+	}
+
+	public void setArmazenamento(String armazenamento) {
+		this.armazenamento = armazenamento;
+	}
+
+	public String getTamTela() {
+		return tamTela;
+	}
+
+	public void setTamTela(String tamTela) {
+		this.tamTela = tamTela;
+	}
+
+	public String getCamera() {
+		return camera;
+	}
+
+	public void setCamera(String camera) {
+		this.camera = camera;
+	}
+
+	public String getRam() {
+		return ram;
+	}
+
+	public void setRam(String ram) {
+		this.ram = ram;
+	}
+
+	public Imagem getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(Imagem imagem) {
+		this.imagem = imagem;
 	}
 	
-	
 
+	
 }
