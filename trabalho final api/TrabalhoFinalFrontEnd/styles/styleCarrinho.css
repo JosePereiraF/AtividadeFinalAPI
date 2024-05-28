@@ -266,16 +266,19 @@ footer p {
   }
 }
 #divTotal{
- display: flex;
- flex-direction: row-reverse;
- gap: 20px;
- padding: 20px;
-}
-
-#imgCelCarrinho{
-  flex: 1;
-  max-height: 100px;
-}
-#listaCarrinho{
-  flex: 1;
-}
+  display: flex;
+  min-width: 300px;
+  flex-direction: row-reverse;
+  gap: 20px;
+  padding: 20px;
+ }
+ 
+ #imgCelCarrinho{
+   flex: 1;
+   max-height: 125px;
+ }
+ #listaCarrinho{
+   flex: 1;
+   min-width: 200px;
+ }
+ 

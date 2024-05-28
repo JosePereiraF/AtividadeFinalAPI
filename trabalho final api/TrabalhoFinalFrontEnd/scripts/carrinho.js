@@ -49,10 +49,11 @@ carrinho.forEach((item)=>{
     divDescricao.appendChild(divTotal);
 
 })
+//var resultadoFormatado = resultado.toFixed(2);
 const parcelado = document.createElement("p");
-parcelado.textContent = "Apenas R$"+(total*1.2)+" em 12x. E você só começa a pagar em 60dias"
+parcelado.textContent = "Apenas R$"+(total*1.2).toFixed(2)+" em 12x. E você só começa a pagar em 60dias"
 const avista = document.createElement("p");
-avista.textContent = "À vista: de R$"+ total+",00 por apenas R$"+(total*0.9)+",00";
+avista.textContent = "À vista: de R$"+ total.toFixed(2)+" por apenas R$"+(total*0.9).toFixed(2);
 valorAprazo.appendChild(parcelado);
 valorAvista.appendChild(avista);
 
