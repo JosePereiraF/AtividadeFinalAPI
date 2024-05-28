@@ -100,7 +100,7 @@ public class FornecedorService {
 	// reativa o Fornecedor
 	public String reativarLogicoFornecedor(Long id) {
 		Fornecedor f = repository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Impossível deletar. Fornecedor não encontrado"));
+				.orElseThrow(() -> new ResourceNotFoundException("Impossível reativar. Fornecedor não encontrado"));
 		if(f.getAtivo().equals(false))
 		{
 			f.setAtivo(true);
