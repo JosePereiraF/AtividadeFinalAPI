@@ -4,11 +4,13 @@ import br.com.serratec.entities.Carrinho;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
+import java.math.BigDecimal;
+
 public class PedidoItemDTO {
 	@NotNull
 	private String nomeProduto;
 	@NotNull
-	private Double valorPedido;
+	private BigDecimal valorPedido;
 	@Positive
 	private Integer quantidade;
 
@@ -24,10 +26,10 @@ public class PedidoItemDTO {
 	public void setNomeProduto(String nomeProduto) {
 		this.nomeProduto = nomeProduto;
 	}
-	public Double getValorPedido() {
+	public BigDecimal getValorPedido() {
 		return valorPedido;
 	}
-	public void setValorPedido(Double valorPedido) {
+	public void setValorPedido(BigDecimal valorPedido) {
 		this.valorPedido = valorPedido;
 	}
 	public Integer getQuantidade() {

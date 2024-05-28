@@ -6,6 +6,8 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.math.BigDecimal;
+
 public class ProdutoRequestDTO {
     @NotBlank
     private String nome;
@@ -13,7 +15,7 @@ public class ProdutoRequestDTO {
     private String descricao;
     @DecimalMin(value = "0.10")//testar se iss funciona
     @NotNull
-    private Double precoUnitario;
+    private BigDecimal precoUnitario;
     @NotNull
     private Categoria categoria;
     
@@ -43,11 +45,11 @@ public class ProdutoRequestDTO {
         this.descricao = descricao;
     }
     
-    public Double getPrecoUnitario() {
+    public BigDecimal getPrecoUnitario() {
         return precoUnitario;
     }
     
-    public void setPrecoUnitario(Double precoUnitario) {
+    public void setPrecoUnitario(BigDecimal precoUnitario) {
         this.precoUnitario = precoUnitario;
     }
     

@@ -1,5 +1,6 @@
 package br.com.serratec.entities;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ public class Produto {
 	private Long id;
 	private String nome;
 	private String descricao;
-	private Double precoUnitario;
+	private BigDecimal precoUnitario;
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
@@ -71,7 +72,7 @@ public class Produto {
 		return descricao;
 	}
 
-	public Double getPrecoUnitario() {
+	public BigDecimal getPrecoUnitario() {
 		return precoUnitario;
 	}
 
@@ -91,7 +92,7 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public void setPrecoUnitario(Double precoUnitario) {
+	public void setPrecoUnitario(BigDecimal precoUnitario) {
 		this.precoUnitario = precoUnitario;
 	}
 

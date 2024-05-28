@@ -2,10 +2,12 @@ package br.com.serratec.dtos;
 
 import br.com.serratec.entities.Produto;
 
+import java.math.BigDecimal;
+
 public class ProdutoResponseDTO {
 	private String nome;
 	private String descricao;
-	private Double precoUnitario;
+	private BigDecimal precoUnitario;
 	private String nomeCategoria;
 	
 	
@@ -30,10 +32,10 @@ public class ProdutoResponseDTO {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Double getPrecoUnitario() {
+	public BigDecimal getPrecoUnitario() {
 		return precoUnitario;
 	}
-	public void setPrecoUnitario(Double precoUnitario) {
+	public void setPrecoUnitario(BigDecimal precoUnitario) {
 		this.precoUnitario = precoUnitario;
 	}
 	public String getNomeCategoria() {

@@ -1,5 +1,7 @@
 package br.com.serratec.services;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -58,6 +60,30 @@ public class CarrinhoService {
         carrinho1.getId().setProduto(produto.get());
     
         return new CarrinhoResponseDTO(carrinho1);
-
     }
+	
+	public BigDecimal calcularValorTotalCarrinho() {
+		return repository.findAll().stream()
+				.map(carrinho -> {
+					Produto produto = carrinho.getId().getProduto();
+					return produto.getPrecoUnitario().multiply(BigDecimal.valueOf(carrinho.getQuantidade()));
+				})
+				.reduce(BigDecimal.ZERO, BigDecimal::add);
+	}
+	public BigDecimal calcularValorTotalComDesconto() {
+		BigDecimal valorTotal = calcularValorTotalCarrinho();
+		BigDecimal desconto = BigDecimal.ZERO;
+		
+		if (valorTotal.compareTo(new BigDecimal("1000")) > 0) {
+			desconto = new BigDecimal("0.10");
+		} else if (valorTotal.compareTo(new BigDecimal("500")) > 0) {
+			desconto = new BigDecimal("0.05");
+		} else if (valorTotal.compareTo(new BigDecimal("300")) > 0) {
+			desconto = new BigDecimal("0.03");
+		}
+		
+		BigDecimal valorComDesconto = valorTotal.subtract(valorTotal.multiply(desconto));
+		return valorComDesconto.setScale(2, RoundingMode.HALF_UP);
+	}
+	
 }

@@ -1,5 +1,6 @@
 package br.com.serratec.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,4 +80,23 @@ public class CarrinhoController {
 	public ResponseEntity<CarrinhoResponseDTO> atualizarCarrinho(@PathVariable ProdutoPedidoId id,@RequestBody Carrinho carrinho){
 		return ResponseEntity.ok(service.atualizarCarrinho(carrinho, id)); 
 	}
+	
+	@GetMapping("/valor-total")
+	@Operation(summary = "Calcular Valor Total do Carrinho")
+	@ApiResponse(responseCode = "200", description = "Sucesso - Valor Calculado.", content = {
+			@Content(mediaType = "application/json", schema = @Schema(implementation = BigDecimal.class))
+	})
+	public ResponseEntity<BigDecimal> calcularValorTotalCarrinho() {
+		return ResponseEntity.ok(service.calcularValorTotalCarrinho());
+	}
+	
+	@GetMapping("/valor-total-com-desconto")
+	@Operation(summary = "Calcular Valor Total do Carrinho com Desconto")
+	@ApiResponse(responseCode = "200", description = "Sucesso - Valor com Desconto Calculado.", content = {
+			@Content(mediaType = "application/json", schema = @Schema(implementation = BigDecimal.class))
+	})
+	public ResponseEntity<BigDecimal> calcularValorTotalComDesconto() {
+		return ResponseEntity.ok(service.calcularValorTotalComDesconto());
+	}
+	
 }
