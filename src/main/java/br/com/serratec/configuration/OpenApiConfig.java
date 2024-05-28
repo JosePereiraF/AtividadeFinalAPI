@@ -14,6 +14,6 @@ public class OpenApiConfig {
         return new OpenAPI()
                 .components(new Components())
                 .info(new Info().title("PROJETO FINAL API")
-                        .description("Documentação da API do Trabalho Final"));
+                        .description("Documentação da API do Trabalho Final - Sistema de E-commerce - Grupo 4"));
     }
 }

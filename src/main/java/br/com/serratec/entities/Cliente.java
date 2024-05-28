@@ -11,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Cliente {
@@ -23,7 +22,7 @@ public class Cliente {
 	private String telefone;
 	private String email;
 	private String cpf;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 	@JsonManagedReference

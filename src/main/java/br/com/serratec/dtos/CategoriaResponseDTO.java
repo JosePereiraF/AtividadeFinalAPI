@@ -9,7 +9,7 @@ public class CategoriaResponseDTO {
 
 	private String nome;
 	private String descricao;
-	private List<Produto> produtos;
+	
 	
 	public CategoriaResponseDTO(Categoria categoria) {
 		nome = categoria.getNome();
@@ -17,13 +17,6 @@ public class CategoriaResponseDTO {
 		
 	}
 	
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
 	
 	public String getNome() {
 		return nome;
